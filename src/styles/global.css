@@ -1,0 +1,57 @@
+.create-btn{
+  padding: 10px 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  background-color: #4CAF50;
+}
+
+label {
+  text-align: center;
+}
+select {
+  padding: 8px 8px;
+  font-size: 14px;
+  margin: 5px;
+  max-width: 220px;
+}
+
+input {
+  padding: 8px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+textarea{
+  align-items: center;
+}
+
+.create-btn:hover{
+  cursor: pointer;
+  background-color: #266e28;
+}
+
+.btn-edit{
+  padding: 8px 8px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  background-color: rgb(63, 156, 233);
+}
+.btn-edit:hover{
+  cursor: pointer;
+  background-color: rgb(24, 32, 107);
+}
+
+.btn-danger{
+  padding: 8px 8px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  background-color: rgb(235, 73, 73);
+}
+.btn-danger:hover{
+  cursor: pointer;
+  background-color: rgb(161, 52, 52);
+}
