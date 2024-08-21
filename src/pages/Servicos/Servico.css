@@ -1,0 +1,44 @@
+.servico-block{
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+thead tr {
+  align-items: center;
+  background-color: #4CAF50;
+  color: white;
+  font-size: large;
+  border: 1px solid #000;
+}
+
+
+thead th {
+  text-align: center;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+tbody td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr td {
+  color: #333;
+}
