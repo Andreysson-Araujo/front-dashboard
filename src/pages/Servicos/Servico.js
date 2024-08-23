@@ -82,7 +82,7 @@ function Servicos() {
           ))}
         </tbody>
       </table>
-      <button className='create-btn' onClick={handleOpenModal}>Registrar Atendimento</button>
+      <button className='create-btn' onClick={handleOpenModal}>Registrar Servico</button>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
       <ModalUpdate isOpen={isUpdateModalOpen} onClose={handleCloseUpdateModal} serviceId={selectedServiceId} />
     </div>
