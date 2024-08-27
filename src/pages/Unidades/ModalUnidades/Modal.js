@@ -5,7 +5,8 @@ import './Modal.css';
 
 function Modal({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
-        name: ''
+        name: '',
+        inaugural_date: ''
     });
 
     const handleChange = (e) => {
@@ -18,15 +19,15 @@ function Modal({ isOpen, onClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Fazendo a requisição POST para criar o novo serviço
-        api.post('http://localhost:8000/api/servicos', formData)
+        // Enviar os dados sem qualquer formatação
+        api.post('http://localhost:8000/api/unidades', formData)
             .then(response => {
-                console.log('Serviço registrado com sucesso:', response.data);
+                console.log('Unidade registrada com sucesso:', response.data);
                 onClose(); // Fechar o modal após o envio
                 window.location.reload();
             })
             .catch(error => {
-                console.error('Erro ao registrar o serviço:', error);
+                console.error('Erro ao registrar a unidade:', error);
             });
     };
 
@@ -36,19 +37,28 @@ function Modal({ isOpen, onClose }) {
         <div className='modal-overlay'>
             <div className='modal-content'>
                 <button className='modal-close' onClick={onClose}>X</button>
-                <h2 className='create-modal'>Registrar Serviço</h2>
+                <h2 className='create-modal'>Registrar Unidade</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <label>Serviço:</label>
+                        <label>Unidade:</label>
                         <input
                             type="text"
                             name="name"
-                            placeholder='Digite o nome do serviço'
+                            placeholder='Digite o nome da unidade'
                             value={formData.name}
                             onChange={handleChange}
                         />
                     </div>
-                    <button className='create-btn' type="submit" >Registrar</button>
+                    <div>
+                        <label>Data inaugural:</label>
+                        <input
+                            type="date"
+                            name="inaugural_date"
+                            value={formData.inaugural_date}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button className='create-btn' type="submit">Registrar</button>
                 </form>
             </div>
         </div>

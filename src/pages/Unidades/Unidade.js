@@ -21,6 +21,12 @@ function Unidades() {
       });
   }, []);
 
+  const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('pt-BR', options);
+};
+
   const handleOpenModal = () => {
     setModalOpen(true);
   };
@@ -65,7 +71,7 @@ function Unidades() {
           {unidades.map((unidade) => (
             <tr key={unidade.id}>
               <td>{unidade.name}</td>
-              <td>{unidade.inaugural_date}</td>
+              <td>{formatDate(unidade.inaugural_date)}</td>
               <td>
                 <button
                   className='btn-edit'
@@ -84,7 +90,7 @@ function Unidades() {
           ))}
         </tbody>
       </table>
-      <button className='create-btn' onClick={handleOpenModal}>Registrar Servico</button>
+      <button className='create-btn' onClick={handleOpenModal}>Registrar Unidade</button>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
       <ModalUpdate isOpen={isUpdateModalOpen} onClose={handleCloseUpdateModal} serviceId={selectedServiceId} />
     </div>
