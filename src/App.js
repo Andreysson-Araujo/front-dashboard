@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom'; // Importar Routes e Route
 import Header from "./componets/header"
 import Atendimentos from './pages/Atendimentos'; // Corrigir o caminho se necessário
 import Servicos from './pages/Servicos/Servico';
+import Unidades from './pages/Unidades/Unidade';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Routes>
                     <Route path="/" /> {/* Adicione o componente Home ou principal */}
                     <Route path="/pages/Atendimento" element={<Atendimentos />} />
+                    <Route path="/pages/Unidades" element={<Unidades />} />
                     <Route path="/pages/Servicos"  element={<Servicos />}/>
                 </Routes>
             </div>
