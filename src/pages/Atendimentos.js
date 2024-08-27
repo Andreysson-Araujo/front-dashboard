@@ -4,6 +4,7 @@ import './Atendimento.css';
 import '../styles/global.css';
 import Modal from './Modals/Modal';
 
+
 function Atendimentos() {
     const [atendimentos, setAtendimentos] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
@@ -48,6 +49,7 @@ function Atendimentos() {
                         <th>Quantidade</th>
                         <th>Serviço</th>
                         <th>Colaborador</th>
+                        <th>Comentario:</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -59,6 +61,9 @@ function Atendimentos() {
                             <td>{atendimento.qtd}</td>
                             <td>{atendimento.servico}</td>
                             <td>{atendimento.usuario}</td>
+                            <td className="tooltip">
+                                <div className="tooltiptext">{atendimento.comentarios}</div>
+                            </td>
                             <td>
                                 <button className='btn-edit'>Editar</button>
                                 <button className="btn-danger" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
