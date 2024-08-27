@@ -26,6 +26,17 @@ function Atendimentos() {
         setModalOpen(false);
     };
 
+    const handleDelete = (id) => {
+        api.delete(`http://localhost:8000/api/atendimentos/${id}`)
+        .then(() => {
+            setAtendimentos(atendimentos.filter(atendimento => atendimento.id !== id));
+            console.log("Atendimento Deletado com sucesso");
+        })
+        .catch(error => {
+            console.error('Erro ao deletar Atendimento', error)
+        });
+    };
+
     return (
         <div className='atendimento-block'>
             <h1>Registros</h1>
@@ -50,7 +61,7 @@ function Atendimentos() {
                             <td>{atendimento.usuario}</td>
                             <td>
                                 <button className='btn-edit'>Editar</button>
-                                <button className="btn-danger">Apagar</button>
+                                <button className="btn-danger" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
                             </td>
                         </tr>
                     ))}

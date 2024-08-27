@@ -15,6 +15,7 @@ thead tr {
   color: white;
   font-size: large;
   border: 1px solid #000;
+
 }
 
 
@@ -23,6 +24,7 @@ thead th {
   padding: 12px;
   text-align: left;
   font-weight: bold;
+  
 }
 
 tbody tr:nth-child(even) {
