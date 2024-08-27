@@ -3,6 +3,7 @@ import api from '../api';
 import './Atendimento.css';
 import '../styles/global.css';
 import Modal from './Modals/Modal';
+import { FaEye } from 'react-icons/fa';
 
 
 function Atendimentos() {
@@ -62,6 +63,7 @@ function Atendimentos() {
                             <td>{atendimento.servico}</td>
                             <td>{atendimento.usuario}</td>
                             <td className="tooltip">
+                            <FaEye />
                                 <div className="tooltiptext">{atendimento.comentarios}</div>
                             </td>
                             <td>

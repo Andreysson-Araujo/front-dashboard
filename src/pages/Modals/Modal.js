@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
-import '../../styles/global.css'
+import '../../styles/global.css';
 import './Modal.css';
 
 function Modal({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
-        unidade: '',
-        servico: '',
-        colaborador: '',
+        unidade_id: '',
+        servico_id: '',
+        usuario_id: '',
         date: '',
+        qtd: '',
+        comentarios: ''
     });
 
-    const [unidades, setUnidades]= useState([]);
+    const [unidades, setUnidades] = useState([]);
     const [servicos, setServicos] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
 
-    useEffect(()=> {
-      api.get('http://localhost:8000/api/unidades')
-      .then(response => setUnidades(response.data))
-      .catch(error => console.error('Erro ao buscar unidades', error))
+    useEffect(() => {
+        api.get('http://localhost:8000/api/unidades')
+            .then(response => setUnidades(response.data))
+            .catch(error => console.error('Erro ao buscar unidades', error));
     }, []);
 
-    useEffect(()=> {
-      api.get('http://localhost:8000/api/servicos')
-      .then(response => setServicos(response.data))
-      .catch(error => console.error('Erro ao buscar servicos', error))
+    useEffect(() => {
+        api.get('http://localhost:8000/api/servicos')
+            .then(response => setServicos(response.data))
+            .catch(error => console.error('Erro ao buscar servicos', error));
     }, []);
 
-    useEffect(()=> {
-      api.get('http://localhost:8000/api/users')
-      .then(response => setUsuarios(response.data))
-      .catch(error => console.error('Erro ao buscar usuarios', error))
+    useEffect(() => {
+        api.get('http://localhost:8000/api/users')
+            .then(response => setUsuarios(response.data))
+            .catch(error => console.error('Erro ao buscar usuarios', error));
     }, []);
 
     const handleChange = (e) => {
@@ -39,9 +41,15 @@ function Modal({ isOpen, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aqui você pode adicionar a lógica para enviar os dados do formulário.
-        console.log(formData);
-        onClose(); // Fechar o modal após o envio
+        api.post('http://localhost:8000/api/atendimentos', formData)
+            .then(response => {
+                console.log('Atendimento registrado com sucesso', response.data);
+                onClose(); // Fechar o modal após o sucesso
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error('Erro ao registrar atendimento', error.response.data);
+            });
     };
 
     if (!isOpen) return null;
@@ -55,12 +63,12 @@ function Modal({ isOpen, onClose }) {
                     <div>
                         <label>Unidade:</label>
                         <select
-                          name='unidade'
-                          value={formData.unidade}
-                          onChange={handleChange}
+                            name='unidade_id'
+                            value={formData.unidade_id}
+                            onChange={handleChange}
                         >
-                          <option value=''>Selecione a unidade</option>
-                          {unidades.map((unidade) => (
+                            <option value=''>Selecione a unidade</option>
+                            {unidades.map((unidade) => (
                                 <option key={unidade.id} value={unidade.id}>
                                     {unidade.name}
                                 </option>
@@ -70,32 +78,32 @@ function Modal({ isOpen, onClose }) {
                     <div>
                         <label>Serviço:</label>
                         <select
-                            name="servico"
-                            value={formData.servico}
+                            name="servico_id"
+                            value={formData.servico_id}
                             onChange={handleChange}
-                          >
-                            <option value=''>Selecione o servico</option>
-                            {servicos.map((servico)=> (
-                              <option key={servico.id} value={servico.id}>
-                                {servico.name}
-                              </option>
+                        >
+                            <option value=''>Selecione o serviço</option>
+                            {servicos.map((servico) => (
+                                <option key={servico.id} value={servico.id}>
+                                    {servico.name}
+                                </option>
                             ))}
-                          </select>
+                        </select>
                     </div>
                     <div>
                         <label>Colaborador:</label>
                         <select
-                            name="usuario"
-                            value={formData.usuario}
+                            name="usuario_id"
+                            value={formData.usuario_id}
                             onChange={handleChange}
-                          >
-                            <option value=''>Colaborador</option>
-                            {usuarios.map((usuario)=> (
-                              <option key={usuario.id} value={usuario.id}>
-                                {usuario.name}
-                              </option>
+                        >
+                            <option value=''>Selecione o colaborador</option>
+                            {usuarios.map((usuario) => (
+                                <option key={usuario.id} value={usuario.id}>
+                                    {usuario.name}
+                                </option>
                             ))}
-                          </select>
+                        </select>
                     </div>
                     <div>
                         <label>Data:</label>
@@ -107,21 +115,23 @@ function Modal({ isOpen, onClose }) {
                         />
                     </div>
                     <div>
-                    <label>Quantidade</label>
+                        <label>Quantidade:</label>
                         <input
-                          type='number'
-                          name='quantidade'
+                            type='number'
+                            name='qtd'
+                            value={formData.qtd}
+                            onChange={handleChange}
                         />
                     </div>
                     <div>
-                    <label>Comentarios</label>
-                    <div>
-                        <textarea placeholder='escreva um comentario sobre o serviço'>
-
-                        </textarea>
+                        <label>Comentários:</label>
+                        <textarea
+                            name='comentarios'
+                            placeholder='Escreva um comentário sobre o serviço'
+                            value={formData.comentarios}
+                            onChange={handleChange}
+                        />
                     </div>
-                    </div>
-                    
                     <button className='create-btn' type="submit">Salvar</button>
                 </form>
             </div>

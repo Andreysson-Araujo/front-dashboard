@@ -55,6 +55,7 @@ tbody tr td {
 .tooltip {
   position: relative;
   display: inline-block;
+  width: 40px;
 }
 
 .tooltip .tooltiptext {
@@ -64,10 +65,10 @@ tbody tr td {
   color: hsl(0, 0%, 100%);
   text-align: center;
   border-radius: 6px;
-  padding: 5px;
+  padding: 20px;
   position: absolute;
   z-index: 1;
-  bottom: 125%; /* Posiciona o tooltip acima do item */
+  bottom: 15%; /* Posiciona o tooltip acima do item */
   left: 50%;
   margin-left: -100px; /* Ajusta a posição horizontal */
   opacity: 0;
