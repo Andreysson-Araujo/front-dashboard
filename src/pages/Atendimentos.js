@@ -82,7 +82,7 @@ function Atendimentos() {
                             </td>
                             <td className="action-buttons">
                                 <button className='btn-edit' onClick={() => handleOpenUpdateModal(atendimento)}>Editar</button>
-                                <button className="btn-delete" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
+                                <button className="btn-danger" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
                             </td>
                         </tr>
                     ))}
