@@ -1,76 +1,65 @@
-/* Atendimento.css */
-.atendimento-block {
-  padding: 20px 300px;
+.atendimento-container {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 650px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.atendimento-title {
   text-align: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 65%; 
-  margin: 0 auto; 
-  height: 100vh; 
-}
-
-
-table {
-  border: 2px solid;
-  border-radius: 50px;
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Arial', sans-serif;
-}
-
-thead tr {
-  align-items: center;
-  background-color: #4CAF50;
-  color: white;
-  font-size: large;
-  border: 1px solid #000;
-}
-
-thead th {
-  padding: 12px;
-  text-align: left;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
   font-weight: bold;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #f2f2f2;
+.atendimento-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-tbody tr:hover {
-  background-color: #ddd;
-}
-
-tbody td {
-  padding: 12px;
+.atendimento-table th, .atendimento-table td {
+  padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
-tbody tr td {
+.atendimento-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
   color: #333;
 }
 
-/* Estilo do Tooltip */
+.atendimento-table tr:hover {
+  background-color: #f1f1f1;
+}
+
 .tooltip {
   position: relative;
   display: inline-block;
-  width: 40px;
+  cursor: pointer;
 }
 
-.tooltip .tooltiptext {
+.icon-eye {
+  color: #007bff;
+  font-size: 18px;
+}
 
-  width: 200px; /* Ajuste conforme necessário */
-  background-color: #555;
-  color: hsl(0, 0%, 100%);
+.tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: #333;
+  color: #fff;
   text-align: center;
-  border-radius: 6px;
-  padding: 20px;
+  border-radius: 5px;
+  padding: 5px 0;
   position: absolute;
   z-index: 1;
-  bottom: 15%; /* Posiciona o tooltip acima do item */
+  bottom: 125%;
   left: 50%;
-  margin-left: -100px; /* Ajusta a posição horizontal */
+  margin-left: -75px;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -80,6 +69,57 @@ tbody tr td {
   opacity: 1;
 }
 
-.table-container {
-  position: relative;
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-edit {
+  background-color: #ffc107;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+.btn-create {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.btn-create:hover {
+  background-color: #218838;
 }

@@ -3,12 +3,14 @@ import api from '../api';
 import './Atendimento.css';
 import '../styles/global.css';
 import Modal from './Modals/Modal';
+import UpdateModal from './Modals/UpdateModal';  
 import { FaEye } from 'react-icons/fa';
-
 
 function Atendimentos() {
     const [atendimentos, setAtendimentos] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);  
+    const [selectedAtendimento, setSelectedAtendimento] = useState(null);  
 
     useEffect(() => {
         api.get('http://localhost:8000/api/atendimentos')
@@ -28,6 +30,16 @@ function Atendimentos() {
         setModalOpen(false);
     };
 
+    const handleOpenUpdateModal = (atendimento) => {
+        setSelectedAtendimento(atendimento);
+        setUpdateModalOpen(true);
+    };
+
+    const handleCloseUpdateModal = () => {
+        setUpdateModalOpen(false);
+        setSelectedAtendimento(null);
+    };
+
     const handleDelete = (id) => {
         api.delete(`http://localhost:8000/api/atendimentos/${id}`)
         .then(() => {
@@ -35,22 +47,22 @@ function Atendimentos() {
             console.log("Atendimento Deletado com sucesso");
         })
         .catch(error => {
-            console.error('Erro ao deletar Atendimento', error)
+            console.error('Erro ao deletar Atendimento', error);
         });
     };
 
     return (
-        <div className='atendimento-block'>
-            <h1>Registros</h1>
-            <table>
+        <div className='atendimento-container'>
+            <h1 className="atendimento-title">Registros</h1>
+            <table className="atendimento-table">
                 <thead>
-                    <tr className='tr'>
+                    <tr>
                         <th>Feito em</th>
                         <th>Unidade</th>
                         <th>Quantidade</th>
                         <th>Serviço</th>
                         <th>Colaborador</th>
-                        <th>Comentario:</th>
+                        <th>Comentário</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -62,22 +74,31 @@ function Atendimentos() {
                             <td>{atendimento.qtd}</td>
                             <td>{atendimento.servico}</td>
                             <td>{atendimento.usuario}</td>
-                            <td className="tooltip">
-                            <FaEye />
-                                <div className="tooltiptext">{atendimento.comentarios}</div>
+                            <td className="atendimento-actions">
+                                <div className="tooltip">
+                                    <FaEye className="icon-eye" />
+                                    <div className="tooltiptext">{atendimento.comentarios}</div>
+                                </div>
                             </td>
-                            <td>
-                                <button className='btn-edit'>Editar</button>
-                                <button className="btn-danger" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
+                            <td className="action-buttons">
+                                <button className='btn-edit' onClick={() => handleOpenUpdateModal(atendimento)}>Editar</button>
+                                <button className="btn-delete" onClick={() => handleDelete(atendimento.id)}>Apagar</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <button className='create-btn' onClick={handleOpenModal}>Registrar Atendimento</button>
+            <button className='btn-create' onClick={handleOpenModal}>Registrar Atendimento</button>
 
-            {/* Modal para registrar atendimento */}
             <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
+
+            {selectedAtendimento && (
+                <UpdateModal 
+                    isOpen={isUpdateModalOpen} 
+                    onClose={handleCloseUpdateModal} 
+                    atendimentoData={selectedAtendimento} 
+                />
+            )}
         </div>
     );
 }
