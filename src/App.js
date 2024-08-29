@@ -4,6 +4,7 @@ import Header from "./componets/header"
 import Atendimentos from './pages/Atendimentos'; // Corrigir o caminho se necessário
 import Servicos from './pages/Servicos/Servico';
 import Unidades from './pages/Unidades/Unidade';
+import Home from './pages/Home';
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
             <Header />
             <div className="content">
                 <Routes>
-                    <Route path="/" /> {/* Adicione o componente Home ou principal */}
+                <Route path="/" element={<Home />} /> {/* Página inicial */}
                     <Route path="/pages/Atendimento" element={<Atendimentos />} />
                     <Route path="/pages/Unidades" element={<Unidades />} />
                     <Route path="/pages/Servicos"  element={<Servicos />}/>

@@ -1,0 +1,12 @@
+/* src/pages/AtendimentosChart.css */
+.chart-container {
+  width: 80%; /* Ajuste a largura conforme necessário */
+  max-width: 800px; /* Ajuste o tamanho máximo conforme necessário */
+  margin: 0 auto; /* Centraliza o gráfico horizontalmente */
+  padding: 20px;
+}
+
+canvas {
+  width: 100% !important;
+  height: auto !important;
+}
