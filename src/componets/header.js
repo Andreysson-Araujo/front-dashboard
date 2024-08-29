@@ -1,20 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Importar Link
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+    const [isExpanded, setIsExpanded] = useState(true);
+
+    const toggleMenu = () => {
+        setIsExpanded(!isExpanded);
+    };
+
     return (
-        <div className="header">
-            <h1>Meu Dashboard</h1>
-            <nav>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/pages/Atendimento">Atendimentos</Link></li>
-                    <li><Link to="/pages/Servicos">Servicos</Link></li>
-                    <li><Link to='/pages/Unidades'>Unidades</Link></li>
-                </ul>
-            </nav>
-        </div>
+        <nav className={`menu-lateral ${isExpanded ? 'expanded' : 'collapsed'}`}>
+            <div className="btn-expandir" onClick={toggleMenu}>
+                <i className="bi bi-list" id="btn-exp"></i>
+            </div>
+            <h1 className='hh1'>DASHBOARD</h1>
+
+            <ul>
+                <li className="item-menu ativo">
+                    <Link to="/">
+                        <span className="icon"><i className="bi bi-house-door"></i></span>
+                        <span className="txt-link">Home</span>
+                    </Link>
+                </li>
+                <li className="item-menu">
+                    <Link to="/pages/Atendimento">
+                        <span className="icon"><i className="bi bi-columns-gap"></i></span>
+                        <span className="txt-link">Atendimentos</span>
+                    </Link>
+                </li>
+                <li className="item-menu">
+                    <Link to="/pages/Servicos">
+                        <span className="icon"><i className="bi bi-calendar3"></i></span>
+                        <span className="txt-link">Serviços</span>
+                    </Link>
+                </li>
+                <li className="item-menu">
+                    <Link to="/pages/Unidades">
+                        <span className="icon"><i className="bi bi-gear"></i></span>
+                        <span className="txt-link">Unidades</span>
+                    </Link>
+                </li>
+            </ul>
+        </nav>
     );
 }
 

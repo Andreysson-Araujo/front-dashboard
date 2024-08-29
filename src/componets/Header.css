@@ -1,34 +1,110 @@
-.header {
-  height: 100vh; /* Full height */
-  width: 180px; /* Sidebar width */
-  position: fixed; /* Stay in place */
-  top: 0; /* Stay at the top */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.hh1{
+  color: #fff;
+  padding: 4px 5px;
+}
+.menu-lateral {
+  height: 100vh;
+  background-color: #2c3e50;
+  padding-top: 20px;
+  position: fixed;
+  top: 0;
   left: 0;
-  background-color: rgb(78, 94, 236, 0.8); /* Dark background color */
-  color: white;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: width 0.3s ease;
+  overflow-x: hidden;
 }
 
-.header h1 {
-  margin-top: 0;
+.menu-lateral.expanded {
+  width: 250px;
 }
 
-.header nav ul {
-  list-style-type: none;
+.menu-lateral.collapsed {
+  width: 80px;
+}
+
+.menu-lateral .btn-expandir {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.menu-lateral .btn-expandir i {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-lateral ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.header nav ul li {
-  margin: 20px 0;
+.menu-lateral ul li {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.header nav ul li a {
-  color: white;
+.menu-lateral ul li a {
+  display: flex;
+  align-items: center;
+  padding: 10px;
   text-decoration: none;
+  color: #ecf0f1;
   font-size: 18px;
+  transition: background 0.2s ease;
 }
 
-.header nav ul li a:hover {
-  text-decoration: underline;
+.menu-lateral ul li a .icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.menu-lateral ul li a .txt-link {
+  display: inline-block;
+  transition: opacity 0.3s ease;
+}
+
+.menu-lateral.expanded ul li a .txt-link {
+  opacity: 1;
+}
+
+.menu-lateral.collapsed ul li a .txt-link {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu-lateral ul li a:hover {
+  background-color: #34495e;
+  border-radius: 4px;
+}
+
+.menu-lateral ul li.ativo a {
+  border-radius: 4px;
+}
+
+.menu-lateral ul li.ativo a .icon, 
+.menu-lateral ul li.ativo a .txt-link {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .menu-lateral.expanded {
+      width: 250px;
+  }
+
+  .menu-lateral.collapsed {
+      width: 60px;
+  }
+
+  .menu-lateral ul li a .txt-link {
+      display: none;
+  }
+
+  .menu-lateral .btn-expandir i {
+      font-size: 20px;
+  }
 }
