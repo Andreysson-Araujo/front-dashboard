@@ -9,7 +9,7 @@ function Unidades() {
   const [unidades, setUnidades] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
-  const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [selectedUnidadeId, setSelectedUnidadeId] = useState(null);
 
   useEffect(() => {
     api.get('http://localhost:8000/api/unidades')
@@ -22,9 +22,7 @@ function Unidades() {
   }, []);
 
   const formatDate = (dateString) => {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    const date = new Date(dateString);
-    return date.toLocaleDateString('pt-BR', options);
+    return dateString.split('-').reverse().join('/');
 };
 
   const handleOpenModal = () => {
@@ -36,13 +34,13 @@ function Unidades() {
   };
 
   const handleOpenUpdateModal = (id) => {
-    setSelectedServiceId(id);
+    setSelectedUnidadeId(id);
     setUpdateModalOpen(true);
   };
 
   const handleCloseUpdateModal = () => {
     setUpdateModalOpen(false);
-    setSelectedServiceId(null);
+    setSelectedUnidadeId(null);
   };
 
   const handleDelete = (id) => {
@@ -92,7 +90,7 @@ function Unidades() {
       </table>
       <button className='create-btn' onClick={handleOpenModal}>Registrar Unidade</button>
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} />
-      <ModalUpdate isOpen={isUpdateModalOpen} onClose={handleCloseUpdateModal} serviceId={selectedServiceId} />
+      <ModalUpdate isOpen={isUpdateModalOpen} onClose={handleCloseUpdateModal} serviceId={selectedUnidadeId} />
     </div>
   );
 }

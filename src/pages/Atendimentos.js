@@ -52,8 +52,9 @@ function Atendimentos() {
     };
 
     return (
+        
         <div className='atendimento-container'>
-            <h1 className="atendimento-title">Registros</h1>
+            <h1>Registros</h1>
             <table className="atendimento-table">
                 <thead>
                     <tr>

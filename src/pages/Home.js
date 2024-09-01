@@ -1,6 +1,6 @@
 // src/pages/Home.js
 import React from 'react';
-import AtendimentosChart from './AtendimentosCharts';
+import AtendimentosChart from '../componets/AtendimentosCharts';
 
 const Home = () => {
     return (

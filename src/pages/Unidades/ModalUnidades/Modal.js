@@ -18,9 +18,17 @@ function Modal({ isOpen, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Enviar os dados sem qualquer formatação
-        api.post('http://localhost:8000/api/unidades', formData)
+    
+        // Extraindo o valor da data manualmente
+        const [year, month, day] = formData.inaugural_date.split('-');
+    
+        // Garantir que a data seja enviada no formato correto, sem fuso horário
+        const adjustedData = {
+            ...formData,
+            inaugural_date: `${year}-${month}-${day}` // Formato correto de data
+        };
+    
+        api.post('http://localhost:8000/api/unidades', adjustedData)
             .then(response => {
                 console.log('Unidade registrada com sucesso:', response.data);
                 onClose(); // Fechar o modal após o envio
@@ -30,7 +38,7 @@ function Modal({ isOpen, onClose }) {
                 console.error('Erro ao registrar a unidade:', error);
             });
     };
-
+    
     if (!isOpen) return null;
 
     return (

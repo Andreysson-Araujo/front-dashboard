@@ -11,24 +11,19 @@ function ModalUpdate({ isOpen, onClose, unidadeId }) {
 
   useEffect(() => {
     if (isOpen && unidadeId) {
-      // Carregar os dados do serviço a ser editado
-      api.get(`http://localhost:8000/api/unidades/${unidadeId}`)
-        .then(response => {
-          console.log('Dados recebidos:', response.data);
-          setFormData({
-            name: response.data.name,
-            inaugural_date: response.data.inaugural_date
-          });
-        })
-        .catch(error => {
-          if (error.response) {
-            console.error('Erro ao carregar os dados do serviço:', error.response.data);
-          } else if (error.request) {
-            console.error('Erro ao enviar a requisição:', error.request);
-          } else {
-            console.error('Erro', error.message);
-          }
-        });
+        console.log('Unidade ID:', unidadeId); // Log para verificar se o ID está sendo passado corretamente
+        // Carregar os dados da unidade a ser editada
+        api.get(`http://localhost:8000/api/unidades/${unidadeId}`)
+            .then(response => {
+                console.log('Dados recebidos:', response.data);
+                setFormData({
+                    name: response.data.name,
+                    inaugural_date: response.data.inaugural_date
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os dados do serviço:', error);
+            });
     }
   }, [isOpen, unidadeId]);
 
@@ -44,16 +39,16 @@ function ModalUpdate({ isOpen, onClose, unidadeId }) {
     
     console.log('FormData enviado:', formData);
 
-    // Fazendo a requisição PUT para atualizar o serviço
+    // Fazendo a requisição PUT para atualizar a unidade
     api.put(`http://localhost:8000/api/unidades/${unidadeId}`, formData)
       .then(response => {
-        console.log('Serviço atualizado com sucesso:', response.data);
+        console.log('Unidade atualizada com sucesso:', response.data);
         onClose(); // Fechar o modal após a atualização
-        window.location.reload();
+        window.location.reload(); // Recarregar a página para refletir as mudanças
       })
       .catch(error => {
         if (error.response) {
-          console.error('Erro ao atualizar o serviço:', error.response.data);
+          console.error('Erro ao atualizar a unidade:', error.response.data);
         } else if (error.request) {
           console.error('Erro ao enviar a requisição:', error.request);
         } else {
@@ -75,12 +70,13 @@ function ModalUpdate({ isOpen, onClose, unidadeId }) {
             <input
               type="text"
               name="name"
+              placeholder='Digite o nome da unidade'
               value={formData.name}
               onChange={handleChange}
             />
           </div>
           <div>
-            <label>Inaugurada em:</label>
+            <label>Data inaugural:</label>
             <input
               type="date"
               name="inaugural_date"
