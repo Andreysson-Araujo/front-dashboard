@@ -51,6 +51,10 @@ function Atendimentos() {
         });
     };
 
+    const formatDate = (dateString) => {
+        return dateString.split('-').reverse().join('/');
+    };
+
     return (
         
         <div className='atendimento-container'>
@@ -70,7 +74,7 @@ function Atendimentos() {
                 <tbody>
                     {atendimentos.map((atendimento) => (
                         <tr key={atendimento.id}>
-                            <td>{atendimento.date}</td>
+                            <td>{formatDate(atendimento.date)}</td>
                             <td>{atendimento.unidade}</td>
                             <td>{atendimento.qtd}</td>
                             <td>{atendimento.servico}</td>
